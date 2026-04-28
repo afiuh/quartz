@@ -17,31 +17,38 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6        # 已升级至支持 Node 24 的版本
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v6      # 已升级至支持 Node 24 的版本
+
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
+
       - name: Install Dependencies
         run: npm ci
+
       - name: Build Quartz
         run: npx quartz build
+
+      # 新增步骤：删除构建产物中可能存在的符号链接
+      - name: Remove symlinks from build output
+        run: find public -type l -delete
+
       - name: Upload artifact
-        uses: actions/upload-artifact@v6 # 替换原 upload-pages-artifact，新的 v6 支持 Node 24
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: github-pages             # 必须命名为 github-pages，供 deploy-pages 消费
           path: public
 
   deploy:
     needs: build
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4   # 当前最新版仍为 v4，尚未原生支持 Node 24
+        uses: actions/deploy-pages@v4
