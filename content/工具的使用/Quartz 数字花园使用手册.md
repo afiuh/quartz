@@ -2,213 +2,213 @@
 ---
 
 
-## 1. 核心工作流程
+## 1. 鏍稿績宸ヤ綔娴佺▼
 
-你的数字花园是一�?Git 仓库 + GitHub Actions 自动构建的静态网站。日常使用只需要三步：
+浣犵殑鏁板瓧鑺卞洯鏄竴涓?Git 浠撳簱 + GitHub Actions 鑷姩鏋勫缓鐨勯潤鎬佺綉绔欍€傛棩甯镐娇鐢ㄥ彧闇€瑕佷笁姝ワ細
 
-1. **编辑内容**：在 `content` 文件夹中添加、修改或删除 `.md` 文件�?2. **提交变更**：使�?Git 命令提交本地更改�?3. **推送上�?*：将提交推送到 GitHub，Actions 自动构建并更新网站�?
-> 整个流程�?1 分钟生效，无需手动触发构建（除非你关闭了自动部署）�?
+1. **缂栬緫鍐呭**锛氬湪 `content` 鏂囦欢澶逛腑娣诲姞銆佷慨鏀规垨鍒犻櫎 `.md` 鏂囦欢銆?2. **鎻愪氦鍙樻洿**锛氫娇鐢?Git 鍛戒护鎻愪氦鏈湴鏇存敼銆?3. **鎺ㄩ€佷笂绾?*锛氬皢鎻愪氦鎺ㄩ€佸埌 GitHub锛孉ctions 鑷姩鏋勫缓骞舵洿鏂扮綉绔欍€?
+> 鏁翠釜娴佺▼绾?1 鍒嗛挓鐢熸晥锛屾棤闇€鎵嬪姩瑙﹀彂鏋勫缓锛堥櫎闈炰綘鍏抽棴浜嗚嚜鍔ㄩ儴缃诧級銆?
 ---
 
-## 2. 管理笔记内容
+## 2. 绠＄悊绗旇鍐呭
 
-### 2.1 添加新笔�?
-- **位置**：所有笔记必须放�?[content](file:///C:%5C有用软件%5Cobsidian-web%5Cquartz%5Ccontent) 文件夹内（可以创建子文件夹分类）�?- **文件格式**：`.md`（Markdown）�?- **命名规范**�?*强烈建议使用英文**，如 `my-article.md`。避免空格、中文、特殊符号（`@#$%` 等）�?  - �?`obsidian-tips.md`
-  - �?`Obsidian技�?md`
-  - �?`how-to-use-git.md`
-- **内容模板**（可选）：在文件开头添�?YAML Frontmatter 可以控制页面标题、日期、标签等�?
+### 2.1 娣诲姞鏂扮瑪璁?
+- **浣嶇疆**锛氭墍鏈夌瑪璁板繀椤绘斁鍦?[content](file:///C:%5C鏈夌敤杞欢%5Cobsidian-web%5Cquartz%5Ccontent) 鏂囦欢澶瑰唴锛堝彲浠ュ垱寤哄瓙鏂囦欢澶瑰垎绫伙級銆?- **鏂囦欢鏍煎紡**锛歚.md`锛圡arkdown锛夈€?- **鍛藉悕瑙勮寖**锛?*寮虹儓寤鸿浣跨敤鑻辨枃**锛屽 `my-article.md`銆傞伩鍏嶇┖鏍笺€佷腑鏂囥€佺壒娈婄鍙凤紙`@#$%` 绛夛級銆?  - 鉁?`obsidian-tips.md`
+  - 鉂?`Obsidian鎶€宸?md`
+  - 鉁?`how-to-use-git.md`
+- **鍐呭妯℃澘**锛堝彲閫夛級锛氬湪鏂囦欢寮€澶存坊鍔?YAML Frontmatter 鍙互鎺у埗椤甸潰鏍囬銆佹棩鏈熴€佹爣绛剧瓑銆?
 ```markdown
 ---
-title: 我的文章标题（会显示在浏览器标签页和页面顶部�?date: 2026-04-20
+title: 鎴戠殑鏂囩珷鏍囬锛堜細鏄剧ず鍦ㄦ祻瑙堝櫒鏍囩椤靛拰椤甸潰椤堕儴锛?date: 2026-04-20
 tags:
   - obsidian
   - quartz
 ---
 
-正文使用标准 Markdown 语法...
+姝ｆ枃浣跨敤鏍囧噯 Markdown 璇硶...
 ```
 
-### 2.2 设置标题和日�?
-- **标题**：如果写�?`title`，网页会使用它；否则使用文件名（去除扩展名）�?- **日期**：Quartz 默认会从 Git 提交历史中读取创建和修改时间。也可以手动指定�?  ```yaml
+### 2.2 璁剧疆鏍囬鍜屾棩鏈?
+- **鏍囬**锛氬鏋滃啓浜?`title`锛岀綉椤典細浣跨敤瀹冿紱鍚﹀垯浣跨敤鏂囦欢鍚嶏紙鍘婚櫎鎵╁睍鍚嶏級銆?- **鏃ユ湡**锛歈uartz 榛樿浼氫粠 Git 鎻愪氦鍘嗗彶涓鍙栧垱寤哄拰淇敼鏃堕棿銆備篃鍙互鎵嬪姩鎸囧畾锛?  ```yaml
   date: 2026-04-20
   updated: 2026-04-21
   ```
 
-### 2.3 插入图片和附�?
-- 将图片（`.png`, `.jpg` 等）�?PDF 等文件放�?`content` 文件夹内的任意位置（建议建立 `assets` �?`images` 子文件夹）�?- �?Markdown 中使�?*相对路径**引用�?
+### 2.3 鎻掑叆鍥剧墖鍜岄檮浠?
+- 灏嗗浘鐗囷紙`.png`, `.jpg` 绛夛級鎴?PDF 绛夋枃浠舵斁鍦?`content` 鏂囦欢澶瑰唴鐨勪换鎰忎綅缃紙寤鸿寤虹珛 `assets` 鎴?`images` 瀛愭枃浠跺す锛夈€?- 鍦?Markdown 涓娇鐢?*鐩稿璺緞**寮曠敤锛?
 ```markdown
-![图片说明](./images/example.png)
-[下载 PDF](./files/manual.pdf)
+![鍥剧墖璇存槑](./images/example.png)
+[涓嬭浇 PDF](./files/manual.pdf)
 ```
 
-> 注意：不支持 Obsidian �?`![[attachment]]` 语法，必须使用标�?Markdown 图片链接�?
-### 2.4 内部双链
+> 娉ㄦ剰锛氫笉鏀寔 Obsidian 鐨?`![[attachment]]` 璇硶锛屽繀椤讳娇鐢ㄦ爣鍑?Markdown 鍥剧墖閾炬帴銆?
+### 2.4 鍐呴儴鍙岄摼
 
-Quartz 完美支持 `[[双链]]` 语法，就像在 Obsidian 中一样�?
-- 链接到另一篇笔记：`[[另一篇笔记的文件名]]`
-- 带别名：`[[另一篇笔记|显示的文字]]`
-- 链接到标题：`[[另一篇笔�?小标题]]`
+Quartz 瀹岀編鏀寔 `[[鍙岄摼]]` 璇硶锛屽氨鍍忓湪 Obsidian 涓竴鏍枫€?
+- 閾炬帴鍒板彟涓€绡囩瑪璁帮細`[[鍙︿竴绡囩瑪璁扮殑鏂囦欢鍚峕]`
+- 甯﹀埆鍚嶏細`[[鍙︿竴绡囩瑪璁皘鏄剧ず鐨勬枃瀛梋]`
+- 閾炬帴鍒版爣棰橈細`[[鍙︿竴绡囩瑪璁?灏忔爣棰榏]`
 
-> 双链的文件名**不需要加 `.md`**，且注意大小写（建议统一使用小写+连字符）�?
-### 2.5 删除笔记
+> 鍙岄摼鐨勬枃浠跺悕**涓嶉渶瑕佸姞 `.md`**锛屼笖娉ㄦ剰澶у皬鍐欙紙寤鸿缁熶竴浣跨敤灏忓啓+杩炲瓧绗︼級銆?
+### 2.5 鍒犻櫎绗旇
 
-- 直接删除 `content` 中的对应 `.md` 文件�?- 提交并推送，网站会自动移除该页面�?
+- 鐩存帴鍒犻櫎 `content` 涓殑瀵瑰簲 `.md` 鏂囦欢銆?- 鎻愪氦骞舵帹閫侊紝缃戠珯浼氳嚜鍔ㄧЩ闄よ椤甸潰銆?
 ---
 
-## 3. 提交与发�?
-### 3.1 使用 Git 命令（推荐）
+## 3. 鎻愪氦涓庡彂甯?
+### 3.1 浣跨敤 Git 鍛戒护锛堟帹鑽愶級
 
-打开终端（PowerShell、CMD �?Git Bash），进入你的 Quartz 项目根目录（即包�?`content` 文件夹和 `quartz.config.ts` 的目录）�?
+鎵撳紑缁堢锛圥owerShell銆丆MD 鎴?Git Bash锛夛紝杩涘叆浣犵殑 Quartz 椤圭洰鏍圭洰褰曪紙鍗冲寘鍚?`content` 鏂囦欢澶瑰拰 `quartz.config.ts` 鐨勭洰褰曪級銆?
 ```bash
-# 1. 查看当前变更
+# 1. 鏌ョ湅褰撳墠鍙樻洿
 git status
 
-# 2. 添加所有更改（新增、修改、删除）
+# 2. 娣诲姞鎵€鏈夋洿鏀癸紙鏂板銆佷慨鏀广€佸垹闄わ級
 git add .
 
-# 3. 提交并写描述
-git commit -m "更新内容：添加了关于XXX的笔�?
+# 3. 鎻愪氦骞跺啓鎻忚堪
+git commit -m "鏇存柊鍐呭锛氭坊鍔犱簡鍏充簬XXX鐨勭瑪璁?
 
-# 4. 推送到 GitHub
+# 4. 鎺ㄩ€佸埌 GitHub
 git push origin v4
 ```
 
-> 如果你的默认分支不是 `v4`，请将最后的 `v4` 替换为你的主分支名（�?`main`）�?
-### 3.2 �?GitHub 网页上直接操作（适合少量快速修改）
+> 濡傛灉浣犵殑榛樿鍒嗘敮涓嶆槸 `v4`锛岃灏嗘渶鍚庣殑 `v4` 鏇挎崲涓轰綘鐨勪富鍒嗘敮鍚嶏紙濡?`main`锛夈€?
+### 3.2 鍦?GitHub 缃戦〉涓婄洿鎺ユ搷浣滐紙閫傚悎灏戦噺蹇€熶慨鏀癸級
 
-- 进入仓库 �?`content` 文件�?�?点击文件进行编辑，或点击 **Add file** 上传新文件�?- 提交后会自动触发构建�?
-### 3.3 注意事项
+- 杩涘叆浠撳簱 鈫?`content` 鏂囦欢澶?鈫?鐐瑰嚮鏂囦欢杩涜缂栬緫锛屾垨鐐瑰嚮 **Add file** 涓婁紶鏂版枃浠躲€?- 鎻愪氦鍚庝細鑷姩瑙﹀彂鏋勫缓銆?
+### 3.3 娉ㄦ剰浜嬮」
 
-- **避免文件占用错误**：如果在 Windows 上遇�?`EBUSY` 错误，说明有程序（如 Obsidian、文件资源管理器）正在占�?`content` 文件夹。关闭这些程序后重新 `git add .` 即可�?- **不要�?Obsidian 直接打开 Quartz 项目文件�?*，否�?Obsidian 会锁定文件。建议将 Obsidian 笔记库放在另一个目录，只把需要发布的笔记复制�?`content`�?
+- **閬垮厤鏂囦欢鍗犵敤閿欒**锛氬鏋滃湪 Windows 涓婇亣鍒?`EBUSY` 閿欒锛岃鏄庢湁绋嬪簭锛堝 Obsidian銆佹枃浠惰祫婧愮鐞嗗櫒锛夋鍦ㄥ崰鐢?`content` 鏂囦欢澶广€傚叧闂繖浜涚▼搴忓悗閲嶆柊 `git add .` 鍗冲彲銆?- **涓嶈鐢?Obsidian 鐩存帴鎵撳紑 Quartz 椤圭洰鏂囦欢澶?*锛屽惁鍒?Obsidian 浼氶攣瀹氭枃浠躲€傚缓璁皢 Obsidian 绗旇搴撴斁鍦ㄥ彟涓€涓洰褰曪紝鍙妸闇€瑕佸彂甯冪殑绗旇澶嶅埗鍒?`content`銆?
 ---
 
-## 4. 自定义网站外观与行为
+## 4. 鑷畾涔夌綉绔欏瑙備笌琛屼负
 
-Quartz 的配置集中在两个 TypeScript 文件：`quartz.config.ts` �?`quartz.layout.ts`。修改后需要重新构建并推送�?
-### 4.1 基本配置 (`quartz.config.ts`)
+Quartz 鐨勯厤缃泦涓湪涓や釜 TypeScript 鏂囦欢锛歚quartz.config.ts` 鍜?`quartz.layout.ts`銆備慨鏀瑰悗闇€瑕侀噸鏂版瀯寤哄苟鎺ㄩ€併€?
+### 4.1 鍩烘湰閰嶇疆 (`quartz.config.ts`)
 
-| 配置�?| 说明 | 示例 |
+| 閰嶇疆椤?| 璇存槑 | 绀轰緥 |
 |--------|------|------|
-| `pageTitle` | 网站标题（显示在浏览器标签页�?| `"我的数字花园"` |
-| `pageTitleSuffix` | 标题后缀（可选） | `" | Obsidian"` |
-| `enableSPA` | 是否启用单页应用模式（平滑切换） | `true` / `false` |
-| `enablePopovers` | 鼠标悬停时显示链接预�?| `true` / `false` |
-| `locale` | 界面语言 | `"zh-CN"` 中文，`"en-US"` 英文 |
-| `baseUrl` | 你的网站域名（不包含 `https://`�?| `"yourname.github.io/quartz"` |
-| `ignorePatterns` | 忽略的文�?文件夹（正则�?| `["private", "drafts/*"]` |
+| `pageTitle` | 缃戠珯鏍囬锛堟樉绀哄湪娴忚鍣ㄦ爣绛鹃〉锛?| `"鎴戠殑鏁板瓧鑺卞洯"` |
+| `pageTitleSuffix` | 鏍囬鍚庣紑锛堝彲閫夛級 | `" | Obsidian"` |
+| `enableSPA` | 鏄惁鍚敤鍗曢〉搴旂敤妯″紡锛堝钩婊戝垏鎹級 | `true` / `false` |
+| `enablePopovers` | 榧犳爣鎮仠鏃舵樉绀洪摼鎺ラ瑙?| `true` / `false` |
+| `locale` | 鐣岄潰璇█ | `"zh-CN"` 涓枃锛宍"en-US"` 鑻辨枃 |
+| `baseUrl` | 浣犵殑缃戠珯鍩熷悕锛堜笉鍖呭惈 `https://`锛?| `"yourname.github.io/quartz"` |
+| `ignorePatterns` | 蹇界暐鐨勬枃浠?鏂囦欢澶癸紙姝ｅ垯锛?| `["private", "drafts/*"]` |
 
-### 4.2 布局配置 (`quartz.layout.ts`)
+### 4.2 甯冨眬閰嶇疆 (`quartz.layout.ts`)
 
-控制页面各个区域（页眉、页脚、侧边栏）显示哪些组件�?
+鎺у埗椤甸潰鍚勪釜鍖哄煙锛堥〉鐪夈€侀〉鑴氥€佷晶杈规爮锛夋樉绀哄摢浜涚粍浠躲€?
 ```typescript
 export const defaultLayout: Layout = {
-  pageBody: "Page",           // 主体内容
+  pageBody: "Page",           // 涓讳綋鍐呭
   header: [
     { type: "Component", name: "Header" },
-    { type: "Search", name: "Search" },     // 搜索�?  ],
+    { type: "Search", name: "Search" },     // 鎼滅储妗?  ],
   left: [
-    { type: "PageList", name: "PageList" }, // 文件列表
-    { type: "RecentNotes", name: "Recent" },// 最近笔�?    { type: "DesktopOnly", name: "TableOfContents" }, // 目录（仅桌面�?  ],
+    { type: "PageList", name: "PageList" }, // 鏂囦欢鍒楄〃
+    { type: "RecentNotes", name: "Recent" },// 鏈€杩戠瑪璁?    { type: "DesktopOnly", name: "TableOfContents" }, // 鐩綍锛堜粎妗岄潰锛?  ],
   right: [
-    { type: "Graph", name: "Graph" },       // 局部关系图�?    { type: "Backlinks", name: "Backlinks" }, // 反向链接
+    { type: "Graph", name: "Graph" },       // 灞€閮ㄥ叧绯诲浘璋?    { type: "Backlinks", name: "Backlinks" }, // 鍙嶅悜閾炬帴
   ],
   footer: [
-    { type: "Links", name: "Links" },       // 页脚链接
+    { type: "Links", name: "Links" },       // 椤佃剼閾炬帴
   ],
 }
 ```
 
-你可以注释掉不需要的组件，或调整顺序�?
-### 4.3 更换主题颜色
+浣犲彲浠ユ敞閲婃帀涓嶉渶瑕佺殑缁勪欢锛屾垨璋冩暣椤哄簭銆?
+### 4.3 鏇存崲涓婚棰滆壊
 
-编辑 `quartz/styles/custom.scss`（如果没有就新建）。例如：
+缂栬緫 `quartz/styles/custom.scss`锛堝鏋滄病鏈夊氨鏂板缓锛夈€備緥濡傦細
 
 ```scss
 :root {
-  --primary: #2e6e9e;      // 主色调（链接、按钮）
-  --background: #f5f5f5;   // 背景�?  --gray: #4a5568;         // 文字�?}
+  --primary: #2e6e9e;      // 涓昏壊璋冿紙閾炬帴銆佹寜閽級
+  --background: #f5f5f5;   // 鑳屾櫙鑹?  --gray: #4a5568;         // 鏂囧瓧鐏?}
 ```
 
-修改后需要重新构建（`npx quartz build`）并推送�?
-### 4.4 添加自定义页面（如“关于”）
+淇敼鍚庨渶瑕侀噸鏂版瀯寤猴紙`npx quartz build`锛夊苟鎺ㄩ€併€?
+### 4.4 娣诲姞鑷畾涔夐〉闈紙濡傗€滃叧浜庘€濓級
 
-�?`content` 目录下创建一�?`.md` 文件，例�?`about.md`。然后在 `quartz.layout.ts` 的页眉组件中添加导航链接�?
+鍦?`content` 鐩綍涓嬪垱寤轰竴涓?`.md` 鏂囦欢锛屼緥濡?`about.md`銆傜劧鍚庡湪 `quartz.layout.ts` 鐨勯〉鐪夌粍浠朵腑娣诲姞瀵艰埅閾炬帴锛?
 ```typescript
 header: [
   { type: "Component", name: "Header" },
   { type: "PageList", name: "PageList" },
   { type: "Links", name: "CustomLinks", links: [
-    { title: "关于", link: "/about" },
-    { title: "GitHub", link: "https://github.com/你的用户�? },
+    { title: "鍏充簬", link: "/about" },
+    { title: "GitHub", link: "https://github.com/浣犵殑鐢ㄦ埛鍚? },
   ]},
 ]
 ```
 
-### 4.5 启用评论功能
+### 4.5 鍚敤璇勮鍔熻兘
 
-推荐使用 **Giscus**（基�?GitHub Discussions）。配置方法：
+鎺ㄨ崘浣跨敤 **Giscus**锛堝熀浜?GitHub Discussions锛夈€傞厤缃柟娉曪細
 
-1. 安装 Giscus 插件（在 `quartz.config.ts` �?`plugins` 数组中添加）�?2. 获取你的 Giscus 仓库配置（需�?GitHub 仓库公开）�?3. �?`quartz.layout.ts` �?`footer` 区域添加 `{ type: "Giscus", name: "Giscus" }`�?
-具体参�?[Giscus 官网](https://giscus.app/)�?
+1. 瀹夎 Giscus 鎻掍欢锛堝湪 `quartz.config.ts` 鐨?`plugins` 鏁扮粍涓坊鍔狅級銆?2. 鑾峰彇浣犵殑 Giscus 浠撳簱閰嶇疆锛堥渶瑕?GitHub 浠撳簱鍏紑锛夈€?3. 鍦?`quartz.layout.ts` 鐨?`footer` 鍖哄煙娣诲姞 `{ type: "Giscus", name: "Giscus" }`銆?
+鍏蜂綋鍙傝€?[Giscus 瀹樼綉](https://giscus.app/)銆?
 ---
 
-## 5. 本地预览（可选）
+## 5. 鏈湴棰勮锛堝彲閫夛級
 
-在推送前，你可以在本地预览网站效果，避免反复提交�?
-### 5.1 启动本地服务�?
-确保已安�?Node.js�?=22）。在项目根目录执行：
+鍦ㄦ帹閫佸墠锛屼綘鍙互鍦ㄦ湰鍦伴瑙堢綉绔欐晥鏋滐紝閬垮厤鍙嶅鎻愪氦銆?
+### 5.1 鍚姩鏈湴鏈嶅姟鍣?
+纭繚宸插畨瑁?Node.js锛?=22锛夈€傚湪椤圭洰鏍圭洰褰曟墽琛岋細
 
 ```bash
 npx quartz build --serve
 ```
 
-终端会显�?`Started a Quartz server listening at http://localhost:8080`，用浏览器打开该地址即可�?
-### 5.2 实时更新
+缁堢浼氭樉绀?`Started a Quartz server listening at http://localhost:8080`锛岀敤娴忚鍣ㄦ墦寮€璇ュ湴鍧€鍗冲彲銆?
+### 5.2 瀹炴椂鏇存柊
 
-本地修改 `content` 下的文件后，需�?*重启服务�?*才能看到变化（按 `Ctrl+C` 停止，再重新运行 `npx quartz build --serve`）。Quartz 默认不监听文件变动，但可以安�?`nodemon` 等工具实现自动重启，但非必需�?
-### 5.3 退出预�?
-在终端中�?`Ctrl+C` 即可停止服务器�?
+鏈湴淇敼 `content` 涓嬬殑鏂囦欢鍚庯紝闇€瑕?*閲嶅惎鏈嶅姟鍣?*鎵嶈兘鐪嬪埌鍙樺寲锛堟寜 `Ctrl+C` 鍋滄锛屽啀閲嶆柊杩愯 `npx quartz build --serve`锛夈€俀uartz 榛樿涓嶇洃鍚枃浠跺彉鍔紝浣嗗彲浠ュ畨瑁?`nodemon` 绛夊伐鍏峰疄鐜拌嚜鍔ㄩ噸鍚紝浣嗛潪蹇呴渶銆?
+### 5.3 閫€鍑洪瑙?
+鍦ㄧ粓绔腑鎸?`Ctrl+C` 鍗冲彲鍋滄鏈嶅姟鍣ㄣ€?
 ---
 
-## 6. 常见问题
+## 6. 甯歌闂
 
-### Q1：网站更新后没有变化�?
-- 检�?GitHub Actions 是否成功（绿�?✅）。如果失败，点击查看日志�?- 强制刷新浏览器（`Ctrl + F5` �?`Cmd + Shift + R`）�?- 等待 1-2 分钟，GitHub Pages 有时有缓存�?
-### Q2：中文文件名导致链接乱码�?404�?
-- 立即将文件名改为英文（如 `如何学习.md` �?`how-to-learn.md`），并修改所有引用该文件的双链�?- 提交更改，重新部署�?
-### Q3：图片不显示�?
-- 检查图片路径是否以 `./` �?`../` 开头，并且文件确实存在�?- 图片文件名也建议用英文，避免空格和中文�?
-### Q4：想隐藏某篇笔记，不让它出现在网站上�?
-- 不要将该笔记放入 `content` 文件夹，或者放�?`content` 下的一个子文件夹并�?`ignorePatterns` 中排除�?- 也可以在 Frontmatter 中添�?`draft: true`（需要插件支持，Quartz 默认不处�?draft）�?
-### Q5：如何备份整个数字花园？
+### Q1锛氱綉绔欐洿鏂板悗娌℃湁鍙樺寲锛?
+- 妫€鏌?GitHub Actions 鏄惁鎴愬姛锛堢豢鑹?鉁咃級銆傚鏋滃け璐ワ紝鐐瑰嚮鏌ョ湅鏃ュ織銆?- 寮哄埗鍒锋柊娴忚鍣紙`Ctrl + F5` 鎴?`Cmd + Shift + R`锛夈€?- 绛夊緟 1-2 鍒嗛挓锛孏itHub Pages 鏈夋椂鏈夌紦瀛樸€?
+### Q2锛氫腑鏂囨枃浠跺悕瀵艰嚧閾炬帴涔辩爜鎴?404锛?
+- 绔嬪嵆灏嗘枃浠跺悕鏀逛负鑻辨枃锛堝 `濡備綍瀛︿範.md` 鈫?`how-to-learn.md`锛夛紝骞朵慨鏀规墍鏈夊紩鐢ㄨ鏂囦欢鐨勫弻閾俱€?- 鎻愪氦鏇存敼锛岄噸鏂伴儴缃层€?
+### Q3锛氬浘鐗囦笉鏄剧ず锛?
+- 妫€鏌ュ浘鐗囪矾寰勬槸鍚︿互 `./` 鎴?`../` 寮€澶达紝骞朵笖鏂囦欢纭疄瀛樺湪銆?- 鍥剧墖鏂囦欢鍚嶄篃寤鸿鐢ㄨ嫳鏂囷紝閬垮厤绌烘牸鍜屼腑鏂囥€?
+### Q4锛氭兂闅愯棌鏌愮瘒绗旇锛屼笉璁╁畠鍑虹幇鍦ㄧ綉绔欎笂锛?
+- 涓嶈灏嗚绗旇鏀惧叆 `content` 鏂囦欢澶癸紝鎴栬€呮斁鍏?`content` 涓嬬殑涓€涓瓙鏂囦欢澶瑰苟鍦?`ignorePatterns` 涓帓闄ゃ€?- 涔熷彲浠ュ湪 Frontmatter 涓坊鍔?`draft: true`锛堥渶瑕佹彃浠舵敮鎸侊紝Quartz 榛樿涓嶅鐞?draft锛夈€?
+### Q5锛氬浣曞浠芥暣涓暟瀛楄姳鍥紵
 
-- 你的本地 `quartz` 文件夹和 GitHub 仓库已经是完整备份。定�?`git push` 即可�?
+- 浣犵殑鏈湴 `quartz` 鏂囦欢澶瑰拰 GitHub 浠撳簱宸茬粡鏄畬鏁村浠姐€傚畾鏈?`git push` 鍗冲彲銆?
 ---
 
-## 7. 进阶技�?
-### 7.1 �?Obsidian 自动同步笔记
+## 7. 杩涢樁鎶€宸?
+### 7.1 浠?Obsidian 鑷姩鍚屾绗旇
 
-你可以写一个简单的脚本（`.bat` �?`.sh`），�?Obsidian 仓库中的特定文件夹复制到 Quartz �?`content` 文件夹，然后自动提交推送。例�?Windows 批处理：
+浣犲彲浠ュ啓涓€涓畝鍗曠殑鑴氭湰锛坄.bat` 鎴?`.sh`锛夛紝灏?Obsidian 浠撳簱涓殑鐗瑰畾鏂囦欢澶瑰鍒跺埌 Quartz 鐨?`content` 鏂囦欢澶癸紝鐒跺悗鑷姩鎻愪氦鎺ㄩ€併€備緥濡?Windows 鎵瑰鐞嗭細
 
 ```batch
-xcopy "D:\我的Obsidian库\发布\" "C:\有用软件\obsidian-web\quartz\content\" /E /Y
-cd C:\有用软件\obsidian-web\quartz
+xcopy "D:\鎴戠殑Obsidian搴揬鍙戝竷\" "C:\鏈夌敤杞欢\obsidian-web\quartz\content\" /E /Y
+cd C:\鏈夌敤杞欢\obsidian-web\quartz
 git add .
-git commit -m "自动同步 %date% %time%"
+git commit -m "鑷姩鍚屾 %date% %time%"
 git push origin v4
 ```
 
-### 7.2 使用标签和搜�?
-Quartz 内置全文搜索，支持中文（但分词效果一般）。建议为笔记添加 `tags` Frontmatter，利用组�?`TagList` 实现按标签过滤�?
-### 7.3 自定义域�?
-�?GitHub Pages 设置中绑定自己的域名，并在仓库根目录添加 `CNAME` 文件（内容为你的域名）。同时修�?`quartz.config.ts` 中的 `baseUrl`�?
+### 7.2 浣跨敤鏍囩鍜屾悳绱?
+Quartz 鍐呯疆鍏ㄦ枃鎼滅储锛屾敮鎸佷腑鏂囷紙浣嗗垎璇嶆晥鏋滀竴鑸級銆傚缓璁负绗旇娣诲姞 `tags` Frontmatter锛屽埄鐢ㄧ粍浠?`TagList` 瀹炵幇鎸夋爣绛捐繃婊ゃ€?
+### 7.3 鑷畾涔夊煙鍚?
+鍦?GitHub Pages 璁剧疆涓粦瀹氳嚜宸辩殑鍩熷悕锛屽苟鍦ㄤ粨搴撴牴鐩綍娣诲姞 `CNAME` 鏂囦欢锛堝唴瀹逛负浣犵殑鍩熷悕锛夈€傚悓鏃朵慨鏀?`quartz.config.ts` 涓殑 `baseUrl`銆?
 ---
 
-## 8. 获取帮助
+## 8. 鑾峰彇甯姪
 
-- **官方文档**：[quartz.jzhao.xyz](https://quartz.jzhao.xyz/)
-- **中文社区**：[Obsidian 中文论坛](https://forum-zh.obsidian.md/) 搜索 “Quartz�?- **GitHub 仓库**：提�?[Issues](https://github.com/jackyzha0/quartz/issues)
+- **瀹樻柟鏂囨。**锛歔quartz.jzhao.xyz](https://quartz.jzhao.xyz/)
+- **涓枃绀惧尯**锛歔Obsidian 涓枃璁哄潧](https://forum-zh.obsidian.md/) 鎼滅储 鈥淨uartz鈥?- **GitHub 浠撳簱**锛氭彁浜?[Issues](https://github.com/jackyzha0/quartz/issues)
 
 ---
 
-现在你可以愉快地维护自己的数字花园了！如果遇到文档未覆盖的问题，随时回来问我�
+鐜板湪浣犲彲浠ユ剦蹇湴缁存姢鑷繁鐨勬暟瀛楄姳鍥簡锛佸鏋滈亣鍒版枃妗ｆ湭瑕嗙洊鐨勯棶棰橈紝闅忔椂鍥炴潵闂垜銆

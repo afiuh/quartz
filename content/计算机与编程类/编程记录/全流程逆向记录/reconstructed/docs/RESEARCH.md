@@ -1,37 +1,37 @@
 ---
 ---
 
-# 逆向研究过程（ZoomPlus 行为等价重建�?
-## 一、目标与边界
+# 閫嗗悜鐮旂┒杩囩▼锛圸oomPlus 琛屼负绛変环閲嶅缓锛?
+## 涓€銆佺洰鏍囦笌杈圭晫
 
-- 目标：把 ZoomPlus.exe（Nuitka 编译打包�?Python 自瞄程序）还原为**行为等价**的干净 Python 工程，可在本机跑通，并支持后续改造�?- 边界：行为等价而非源码等价（Nuitka 样板无法逐行还原，核心公式以动态验证为准）；第三方开源包不逆向，直接官方安装；机器学习模型不反推，复用原模型文件�?
-## 二、工具链
+- 鐩爣锛氭妸 ZoomPlus.exe锛圢uitka 缂栬瘧鎵撳寘鐨?Python 鑷瀯绋嬪簭锛夎繕鍘熶负**琛屼负绛変环**鐨勫共鍑€ Python 宸ョ▼锛屽彲鍦ㄦ湰鏈鸿窇閫氾紝骞舵敮鎸佸悗缁敼閫犮€?- 杈圭晫锛氳涓虹瓑浠疯€岄潪婧愮爜绛変环锛圢uitka 鏍锋澘鏃犳硶閫愯杩樺師锛屾牳蹇冨叕寮忎互鍔ㄦ€侀獙璇佷负鍑嗭級锛涚涓夋柟寮€婧愬寘涓嶉€嗗悜锛岀洿鎺ュ畼鏂瑰畨瑁咃紱鏈哄櫒瀛︿範妯″瀷涓嶅弽鎺紝澶嶇敤鍘熸ā鍨嬫枃浠躲€?
+## 浜屻€佸伐鍏烽摼
 
-- 静态：DIE（PE / 编译信息识别）、pyinstxtractor-ng（载荷分析）、Ghidra 12.1.2 headless 全量分析（`-process -noanalysis` + 自研定位 / 反编译脚本）、字符串引用定位核心函数�?- 动态：Frida（内�?Python312），hook `PyObject_GetAttr` 等定位配置读取点，hook 目标函数采集入参 / 出参 / 寄存器值；靶场实采�?- 运行环境：嵌入式 Python 3.12 + onnxruntime-gpu（CUDA EP），DLL 随包部署�?
-## 三、研究阶�?
-1. **识别**：确�?ZoomPlus.exe �?Nuitka 打包、Python 3.12.7、Qt6 GUI、onnxruntime 推理�?2. **定位**：Ghidra 全量分析 + 字符串引�?�?定位 `core.ai_aiming` / `process_aiming` / `PIDController` 等核心函数�?3. **静态重�?*：core（config / inference / ai_aiming / smart_tracker / ai_loop / screen_capture 等）、win_utils（输出通道）、telemetry、tests�?4. **动态验�?*（Frida + 靶场）：
-   - PIDController.update�?032/2032 样本回放
-   - calculate_aim_target�?12/712（后扩至 1086+�?   - SmartTracker�?691/4691
-   - 贝塞尔误差旋转公式：2635 �?   - process_aiming 状态机�?74 �?5. **运行环境**：嵌入式 Python 3.12 + CUDA，系统残留清理，依赖经清华镜像安装�?6. **实机联调**�?026-08-06 ~ 08-07）：截图 �?推理 �?瞄准 �?输出全链路跑通，靶场正常锁人�?
-## 四、关键发现与结论
+- 闈欐€侊細DIE锛圥E / 缂栬瘧淇℃伅璇嗗埆锛夈€乸yinstxtractor-ng锛堣浇鑽峰垎鏋愶級銆丟hidra 12.1.2 headless 鍏ㄩ噺鍒嗘瀽锛坄-process -noanalysis` + 鑷爺瀹氫綅 / 鍙嶇紪璇戣剼鏈級銆佸瓧绗︿覆寮曠敤瀹氫綅鏍稿績鍑芥暟銆?- 鍔ㄦ€侊細Frida锛堝唴宓?Python312锛夛紝hook `PyObject_GetAttr` 绛夊畾浣嶉厤缃鍙栫偣锛宧ook 鐩爣鍑芥暟閲囬泦鍏ュ弬 / 鍑哄弬 / 瀵勫瓨鍣ㄥ€硷紱闈跺満瀹為噰銆?- 杩愯鐜锛氬祵鍏ュ紡 Python 3.12 + onnxruntime-gpu锛圕UDA EP锛夛紝DLL 闅忓寘閮ㄧ讲銆?
+## 涓夈€佺爺绌堕樁娈?
+1. **璇嗗埆**锛氱‘璁?ZoomPlus.exe 涓?Nuitka 鎵撳寘銆丳ython 3.12.7銆丵t6 GUI銆乷nnxruntime 鎺ㄧ悊銆?2. **瀹氫綅**锛欸hidra 鍏ㄩ噺鍒嗘瀽 + 瀛楃涓插紩鐢?鈫?瀹氫綅 `core.ai_aiming` / `process_aiming` / `PIDController` 绛夋牳蹇冨嚱鏁般€?3. **闈欐€侀噸寤?*锛歝ore锛坈onfig / inference / ai_aiming / smart_tracker / ai_loop / screen_capture 绛夛級銆亀in_utils锛堣緭鍑洪€氶亾锛夈€乼elemetry銆乼ests銆?4. **鍔ㄦ€侀獙璇?*锛團rida + 闈跺満锛夛細
+   - PIDController.update锛?032/2032 鏍锋湰鍥炴斁
+   - calculate_aim_target锛?12/712锛堝悗鎵╄嚦 1086+锛?   - SmartTracker锛?691/4691
+   - 璐濆灏旇宸棆杞叕寮忥細2635 甯?   - process_aiming 鐘舵€佹満锛?74 缁?5. **杩愯鐜**锛氬祵鍏ュ紡 Python 3.12 + CUDA锛岀郴缁熸畫鐣欐竻鐞嗭紝渚濊禆缁忔竻鍗庨暅鍍忓畨瑁呫€?6. **瀹炴満鑱旇皟**锛?026-08-06 ~ 08-07锛夛細鎴浘 鈫?鎺ㄧ悊 鈫?鐬勫噯 鈫?杈撳嚭鍏ㄩ摼璺窇閫氾紝闈跺満姝ｅ父閿佷汉銆?
+## 鍥涖€佸叧閿彂鐜颁笌缁撹
 
-| 发现 | 证据 | 结论 / 处理 |
+| 鍙戠幇 | 璇佹嵁 | 缁撹 / 澶勭悊 |
 |---|---|---|
-| ddxoft 驱动惰性初始化 | 穷举 dd63330.dll 导出 | `DD_btn(0)` 触发装驱动，修复 `ensure_ddxoft_ready` |
-| dxcam 混合显卡限制 | 微软官方文档 + 本机实测 | Optimus 下对独显 `DuplicateOutput` 必失败；独显直连可复活；原版在本机实际靠 mss 兜底 |
-| v11 模型输出 cxcywh | 512 模型输出布局统计（仅 4.9% 满足 xyxy�?| 修复转换，瞄准点恢复正常 |
-| NMS 漏接 | 原版 Frida 每帧单框 vs 本版每帧 15 �?| 接回 NMS，瞄准不再乱�?|
-| DPI 感知缺失 | GetSystemMetrics 1536x864 vs 实际 1920x1080 | 进程启动�?DPI 感知，坐标系一�?|
-| bezier_curve_steps 不参与瞄�?| probe_bezier_reads�?771 次读取仅 enabled / strength | steps �?UI 占位，重构版保持不生�?|
-| 动态预判滞�?| 遥测：预判超�?+8.5px vs 理想 +31px | 参数问题（预判时�?/ 平滑 / 延迟补偿），非代码缺�?|
+| ddxoft 椹卞姩鎯版€у垵濮嬪寲 | 绌蜂妇 dd63330.dll 瀵煎嚭 | `DD_btn(0)` 瑙﹀彂瑁呴┍鍔紝淇 `ensure_ddxoft_ready` |
+| dxcam 娣峰悎鏄惧崱闄愬埗 | 寰蒋瀹樻柟鏂囨。 + 鏈満瀹炴祴 | Optimus 涓嬪鐙樉 `DuplicateOutput` 蹇呭け璐ワ紱鐙樉鐩磋繛鍙娲伙紱鍘熺増鍦ㄦ湰鏈哄疄闄呴潬 mss 鍏滃簳 |
+| v11 妯″瀷杈撳嚭 cxcywh | 512 妯″瀷杈撳嚭甯冨眬缁熻锛堜粎 4.9% 婊¤冻 xyxy锛?| 淇杞崲锛岀瀯鍑嗙偣鎭㈠姝ｅ父 |
+| NMS 婕忔帴 | 鍘熺増 Frida 姣忓抚鍗曟 vs 鏈増姣忓抚 15 妗?| 鎺ュ洖 NMS锛岀瀯鍑嗕笉鍐嶄贡璺?|
+| DPI 鎰熺煡缂哄け | GetSystemMetrics 1536x864 vs 瀹為檯 1920x1080 | 杩涚▼鍚姩缃?DPI 鎰熺煡锛屽潗鏍囩郴涓€鑷?|
+| bezier_curve_steps 涓嶅弬涓庣瀯鍑?| probe_bezier_reads锛?771 娆¤鍙栦粎 enabled / strength | steps 涓?UI 鍗犱綅锛岄噸鏋勭増淇濇寔涓嶇敓鏁?|
+| 鍔ㄦ€侀鍒ゆ粸鍚?| 閬ユ祴锛氶鍒よ秴鍓?+8.5px vs 鐞嗘兂 +31px | 鍙傛暟闂锛堥鍒ゆ椂闂?/ 骞虫粦 / 寤惰繜琛ュ伩锛夛紝闈炰唬鐮佺己闄?|
 
-## 五、验证方法论
+## 浜斻€侀獙璇佹柟娉曡
 
-- 行为等价判定�?同输�?�?同输�?的样本回放为准（Frida 实采样本离线回放，浮点对齐）�?- 单测 46 个：PID / 目标�?/ 追踪�?/ 贝塞�?/ 配置 / 遥测 / 输出分发�?- 实机端到端：靶场实测 + 遥测交叉验证（测试模式窗口标记切分数据）�?
-## 六、后续研究点
+- 琛屼负绛変环鍒ゅ畾浠?鍚岃緭鍏?鈫?鍚岃緭鍑?鐨勬牱鏈洖鏀句负鍑嗭紙Frida 瀹為噰鏍锋湰绂荤嚎鍥炴斁锛屾诞鐐瑰榻愶級銆?- 鍗曟祴 46 涓細PID / 鐩爣鐐?/ 杩借釜鍣?/ 璐濆灏?/ 閰嶇疆 / 閬ユ祴 / 杈撳嚭鍒嗗彂銆?- 瀹炴満绔埌绔細闈跺満瀹炴祴 + 閬ユ祴浜ゅ弶楠岃瘉锛堟祴璇曟ā寮忕獥鍙ｆ爣璁板垏鍒嗘暟鎹級銆?
+## 鍏€佸悗缁爺绌剁偣
 
-- 动�?P 大误差段公式（需大误差样本）
-- xbox 响应映射
-- 追踪器延迟补偿调优（预判时间 / 平滑系数，测试模式可采集验证�?- auto_fire（搁置）
-- GUI（PyQt6，待做）
+- 鍔ㄦ€?P 澶ц宸鍏紡锛堥渶澶ц宸牱鏈級
+- xbox 鍝嶅簲鏄犲皠
+- 杩借釜鍣ㄥ欢杩熻ˉ鍋胯皟浼橈紙棰勫垽鏃堕棿 / 骞虫粦绯绘暟锛屾祴璇曟ā寮忓彲閲囬泦楠岃瘉锛?- auto_fire锛堟悂缃級
+- GUI锛圥yQt6锛屽緟鍋氾級
 

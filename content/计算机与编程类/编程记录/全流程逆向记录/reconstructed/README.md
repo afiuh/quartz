@@ -1,49 +1,49 @@
 ---
 ---
 
-# ZoomPlus 行为等价重建
+# ZoomPlus 琛屼负绛変环閲嶅缓
 
-> 目标：把 ZoomPlus.exe（Nuitka 打包�?Python 自瞄）还原为**行为等价**的干净 Python 工程�?> 说明：行为等价而非源码等价；Nuitka 样板无法逐行还原，核心公式以动态验证为准�?
-## 2026-08-07：端到端实机验证收口
+> 鐩爣锛氭妸 ZoomPlus.exe锛圢uitka 鎵撳寘鐨?Python 鑷瀯锛夎繕鍘熶负**琛屼负绛変环**鐨勫共鍑€ Python 宸ョ▼銆?> 璇存槑锛氳涓虹瓑浠疯€岄潪婧愮爜绛変环锛汵uitka 鏍锋澘鏃犳硶閫愯杩樺師锛屾牳蹇冨叕寮忎互鍔ㄦ€侀獙璇佷负鍑嗐€?
+## 2026-08-07锛氱鍒扮瀹炴満楠岃瘉鏀跺彛
 
-- 实机（RTX 4050 笔记本）全链路跑通：dxcam 截图 �?512 模型推理 �?坐标映射 �?瞄准 �?ddxoft 输出，靶场可正常锁人�?- 本轮修复的关键问题：
-  - YOLOv8/v11 输出 cxcywh→xyxy 转换（v11s 模型输出为中心点+宽高�?  - 推理�?NMS 去重漏接（原版每帧单框，此前每帧多框导致瞄准乱跳�?  - DPI 感知缺失�?25% 缩放�?GetSystemMetrics 虚拟尺寸与截图真实像素错位）
-  - ddxoft 驱动惰性初始化（DD_btn 触发装驱动）
-- 测试模式：`python main.py --test` = 真实瞄准 + 循环采集�?s 满性能 / 1s 记录，窗口标记切分数据）；`python main.py --dry-run` = 干跑不动鼠标�?- 验证状态：46/46 单测通过；PID 2032/2032、目标点 712+/1086+、追踪器 4691/4691、贝塞尔 2635 帧�?- 已知研究点：动�?P 大误差段公式、xbox 映射、追踪器延迟补偿调优、auto_fire（搁置）�?
-## 模块地图
+- 瀹炴満锛圧TX 4050 绗旇鏈級鍏ㄩ摼璺窇閫氾細dxcam 鎴浘 鈫?512 妯″瀷鎺ㄧ悊 鈫?鍧愭爣鏄犲皠 鈫?鐬勫噯 鈫?ddxoft 杈撳嚭锛岄澏鍦哄彲姝ｅ父閿佷汉銆?- 鏈疆淇鐨勫叧閿棶棰橈細
+  - YOLOv8/v11 杈撳嚭 cxcywh鈫抶yxy 杞崲锛坴11s 妯″瀷杈撳嚭涓轰腑蹇冪偣+瀹介珮锛?  - 鎺ㄧ悊鍚?NMS 鍘婚噸婕忔帴锛堝師鐗堟瘡甯у崟妗嗭紝姝ゅ墠姣忓抚澶氭瀵艰嚧鐬勫噯涔辫烦锛?  - DPI 鎰熺煡缂哄け锛?25% 缂╂斁涓?GetSystemMetrics 铏氭嫙灏哄涓庢埅鍥剧湡瀹炲儚绱犻敊浣嶏級
+  - ddxoft 椹卞姩鎯版€у垵濮嬪寲锛圖D_btn 瑙﹀彂瑁呴┍鍔級
+- 娴嬭瘯妯″紡锛歚python main.py --test` = 鐪熷疄鐬勫噯 + 寰幆閲囬泦锛?s 婊℃€ц兘 / 1s 璁板綍锛岀獥鍙ｆ爣璁板垏鍒嗘暟鎹級锛沗python main.py --dry-run` = 骞茶窇涓嶅姩榧犳爣銆?- 楠岃瘉鐘舵€侊細46/46 鍗曟祴閫氳繃锛汸ID 2032/2032銆佺洰鏍囩偣 712+/1086+銆佽拷韪櫒 4691/4691銆佽礉濉炲皵 2635 甯с€?- 宸茬煡鐮旂┒鐐癸細鍔ㄦ€?P 澶ц宸鍏紡銆亁box 鏄犲皠銆佽拷韪櫒寤惰繜琛ュ伩璋冧紭銆乤uto_fire锛堟悂缃級銆?
+## 妯″潡鍦板浘
 
 ```
 reconstructed/
-├── core/
-�?  ├── config.py            # Config 类（85 字段，config.json 地面真值）�?�?  ├── config_manager.py    # 游戏预设管理（aimlab/apex）✅
-�?  ├── inference.py         # PIDController（已验证�? YOLO 推理管线
-�?  ├── ai_aiming.py         # 目标选择/瞄准�?process_aiming（状态级已验证）
-�?  ├── smart_tracker.py     # 智能预判（语义版，待动态验证）
-�?  ├── ai_loop.py           # 主循环调度（骨架�?�?  ├── ai_loop_state.py     # LoopState（字段来自实�?repr）✅
-�?  ├── ai_loop_utils.py     # 循环辅助（FPS/间隔�?�?  ├── key_listener.py      # 热键监听（推断）
-�?  ├── screen_capture.py    # dxcam/mss 截图（推断）
-�?  ├── auto_fire.py         # 自动开火（已搁置，占位�?�?  └── 基础设施：path/logging/language/session/roboflow/updater
-├── win_utils/               # 输出通道包（13 子模块）
-�?  ├── mouse_move.py        # 方法分发器（ddxoft/win32/xbox/arduino/makcu�?�?  ├── ddxoft_mouse.py      # DD_movR 驱动输出（运行时确认）✅
-�?  ├── xbox_controller.py   # 手柄映射（推断，待验证）
-�?  ├── mouse_click.py / 其余系统工具
-└── tests/                   # 单元测试�?/6 通过�?```
+鈹溾攢鈹€ core/
+鈹?  鈹溾攢鈹€ config.py            # Config 绫伙紙85 瀛楁锛宑onfig.json 鍦伴潰鐪熷€硷級鉁?鈹?  鈹溾攢鈹€ config_manager.py    # 娓告垙棰勮绠＄悊锛坅imlab/apex锛夆渽
+鈹?  鈹溾攢鈹€ inference.py         # PIDController锛堝凡楠岃瘉锛? YOLO 鎺ㄧ悊绠＄嚎
+鈹?  鈹溾攢鈹€ ai_aiming.py         # 鐩爣閫夋嫨/鐬勫噯鐐?process_aiming锛堢姸鎬佺骇宸查獙璇侊級
+鈹?  鈹溾攢鈹€ smart_tracker.py     # 鏅鸿兘棰勫垽锛堣涔夌増锛屽緟鍔ㄦ€侀獙璇侊級
+鈹?  鈹溾攢鈹€ ai_loop.py           # 涓诲惊鐜皟搴︼紙楠ㄦ灦锛?鈹?  鈹溾攢鈹€ ai_loop_state.py     # LoopState锛堝瓧娈垫潵鑷疄閲?repr锛夆渽
+鈹?  鈹溾攢鈹€ ai_loop_utils.py     # 寰幆杈呭姪锛團PS/闂撮殧锛?鈹?  鈹溾攢鈹€ key_listener.py      # 鐑敭鐩戝惉锛堟帹鏂級
+鈹?  鈹溾攢鈹€ screen_capture.py    # dxcam/mss 鎴浘锛堟帹鏂級
+鈹?  鈹溾攢鈹€ auto_fire.py         # 鑷姩寮€鐏紙宸叉悂缃紝鍗犱綅锛?鈹?  鈹斺攢鈹€ 鍩虹璁炬柦锛歱ath/logging/language/session/roboflow/updater
+鈹溾攢鈹€ win_utils/               # 杈撳嚭閫氶亾鍖咃紙13 瀛愭ā鍧楋級
+鈹?  鈹溾攢鈹€ mouse_move.py        # 鏂规硶鍒嗗彂鍣紙ddxoft/win32/xbox/arduino/makcu锛?鈹?  鈹溾攢鈹€ ddxoft_mouse.py      # DD_movR 椹卞姩杈撳嚭锛堣繍琛屾椂纭锛夆渽
+鈹?  鈹溾攢鈹€ xbox_controller.py   # 鎵嬫焺鏄犲皠锛堟帹鏂紝寰呴獙璇侊級
+鈹?  鈹溾攢鈹€ mouse_click.py / 鍏朵綑绯荤粺宸ュ叿
+鈹斺攢鈹€ tests/                   # 鍗曞厓娴嬭瘯锛?/6 閫氳繃锛?```
 
-## 验证状�?
-| 状�?| 内容 |
+## 楠岃瘉鐘舵€?
+| 鐘舵€?| 鍐呭 |
 |---|---|
-| �?已验�?| PIDController.update�?032/2032）、calculate_aim_target�?086+）、is_head_class、process_aiming 状态机、DD_movR 输出通道 |
-| 🔶 语义推断 | smart_tracker、key_listener、screen_capture、xbox 映射、YOLO 解码 |
-| �?待动态验�?| 贝塞尔操作数、追踪器精确公式、_calculate_adjusted_kp、xbox、YOLO 解码细节 |
-| �?刻意省略 | 机器许可校验、更新、反作弊规避（spoofer 等） |
+| 鉁?宸查獙璇?| PIDController.update锛?032/2032锛夈€乧alculate_aim_target锛?086+锛夈€乮s_head_class銆乸rocess_aiming 鐘舵€佹満銆丏D_movR 杈撳嚭閫氶亾 |
+| 馃敹 璇箟鎺ㄦ柇 | smart_tracker銆乲ey_listener銆乻creen_capture銆亁box 鏄犲皠銆乊OLO 瑙ｇ爜 |
+| 鈴?寰呭姩鎬侀獙璇?| 璐濆灏旀搷浣滄暟銆佽拷韪櫒绮剧‘鍏紡銆乢calculate_adjusted_kp銆亁box銆乊OLO 瑙ｇ爜缁嗚妭 |
+| 鉀?鍒绘剰鐪佺暐 | 鏈哄櫒璁稿彲鏍￠獙銆佹洿鏂般€佸弽浣滃紛瑙勯伩锛坰poofer 绛夛級 |
 
-## 运行
+## 杩愯
 
 ```bash
-# 环境：Python 3.12，依赖见 requirements.txt（含 CUDA 加速与重建说明�?python -m unittest discover -s tests          # 运行测试
-python -m pip install -r requirements.txt     # 重建依赖（清华镜像加 -i https://pypi.tuna.tsinghua.edu.cn/simple�?```
+# 鐜锛歅ython 3.12锛屼緷璧栬 requirements.txt锛堝惈 CUDA 鍔犻€熶笌閲嶅缓璇存槑锛?python -m unittest discover -s tests          # 杩愯娴嬭瘯
+python -m pip install -r requirements.txt     # 閲嶅缓渚濊禆锛堟竻鍗庨暅鍍忓姞 -i https://pypi.tuna.tsinghua.edu.cn/simple锛?```
 
-程序入口（main.py）与 GUI 在动态验证收口后添加�?本地嵌入式环境位�?`../tool/python312`（自包含，已配置 CUDA 加速）�?进度记录�?`docs/PROGRESS.md`�?
-## 动态验�?
-`../analysis/frida/capture_all.py` 一次会话收集：
-贝塞�?6 个调用点寄存器值、SmartTracker 方法、动态P、主循环节拍、输出通道�?
+绋嬪簭鍏ュ彛锛坢ain.py锛変笌 GUI 鍦ㄥ姩鎬侀獙璇佹敹鍙ｅ悗娣诲姞銆?鏈湴宓屽叆寮忕幆澧冧綅浜?`../tool/python312`锛堣嚜鍖呭惈锛屽凡閰嶇疆 CUDA 鍔犻€燂級銆?杩涘害璁板綍瑙?`docs/PROGRESS.md`銆?
+## 鍔ㄦ€侀獙璇?
+`../analysis/frida/capture_all.py` 涓€娆′細璇濇敹闆嗭細
+璐濆灏?6 涓皟鐢ㄧ偣瀵勫瓨鍣ㄥ€笺€丼martTracker 鏂规硶銆佸姩鎬丳銆佷富寰幆鑺傛媿銆佽緭鍑洪€氶亾銆?

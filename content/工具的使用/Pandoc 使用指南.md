@@ -2,130 +2,130 @@
 ---
 
 
-### 📖 Pandoc 是什么？
+### 馃摉 Pandoc 鏄粈涔堬紵
 
-你可以把 Pandoc 理解为一本万能词典，它能在超�?40 种文档格式间进行精确转换，是真正的“文档格式转换瑞士军刀”�?
-*   **格式支持广泛**：小�?Markdown、HTML，大�?Word�?docx）、PPT、PDF，甚至电子书（EPUB），它都能轻松搞定�?*   **质量�?*：转换的核心是解析文档的“结构”（如标题、段落、表格），而非样式，因此能最大程度保证内容的准确性�?
-### 💻 第一步：安装
+浣犲彲浠ユ妸 Pandoc 鐞嗚В涓轰竴鏈竾鑳借瘝鍏革紝瀹冭兘鍦ㄨ秴杩?40 绉嶆枃妗ｆ牸寮忛棿杩涜绮剧‘杞崲锛屾槸鐪熸鐨勨€滄枃妗ｆ牸寮忚浆鎹㈢憺澹啗鍒€鈥濄€?
+*   **鏍煎紡鏀寔骞挎硾**锛氬皬鍒?Markdown銆丠TML锛屽ぇ鍒?Word锛?docx锛夈€丳PT銆丳DF锛岀敋鑷崇數瀛愪功锛圗PUB锛夛紝瀹冮兘鑳借交鏉炬悶瀹氥€?*   **璐ㄩ噺楂?*锛氳浆鎹㈢殑鏍稿績鏄В鏋愭枃妗ｇ殑鈥滅粨鏋勨€濓紙濡傛爣棰樸€佹钀姐€佽〃鏍硷級锛岃€岄潪鏍峰紡锛屽洜姝よ兘鏈€澶х▼搴︿繚璇佸唴瀹圭殑鍑嗙‘鎬с€?
+### 馃捇 绗竴姝ワ細瀹夎
 
-Pandoc 支持 Windows、macOS �?Linux，安装很简单�?
-*   **Windows 用户**
-    *   **推荐方法**：从官网下载 `.msi` 安装程序，双击按提示操作即可，安装程序会自动配置好环境�?    *   **包管理器**：使�?`winget install --id JohnMacFarlane.Pandoc` �?`choco install pandoc`�?
-*   **macOS 用户**
-    *   同样推荐从官网下�?`.pkg` 安装程序。习惯用 Homebrew 的开发者，可执�?`brew install pandoc`�?
-*   **Linux 用户**
-    *   �?Ubuntu/Debian 为例，在终端执行 `sudo apt-get install pandoc` 即可�?
-安装完成后，打开终端（命令提示符�?PowerShell），输入 `pandoc --version`，如果能看到版本信息，就表示安装成功啦�?
-### �?第二步：核心语法
+Pandoc 鏀寔 Windows銆乵acOS 鍜?Linux锛屽畨瑁呭緢绠€鍗曘€?
+*   **Windows 鐢ㄦ埛**
+    *   **鎺ㄨ崘鏂规硶**锛氫粠瀹樼綉涓嬭浇 `.msi` 瀹夎绋嬪簭锛屽弻鍑绘寜鎻愮ず鎿嶄綔鍗冲彲锛屽畨瑁呯▼搴忎細鑷姩閰嶇疆濂界幆澧冦€?    *   **鍖呯鐞嗗櫒**锛氫娇鐢?`winget install --id JohnMacFarlane.Pandoc` 鎴?`choco install pandoc`銆?
+*   **macOS 鐢ㄦ埛**
+    *   鍚屾牱鎺ㄨ崘浠庡畼缃戜笅杞?`.pkg` 瀹夎绋嬪簭銆備範鎯敤 Homebrew 鐨勫紑鍙戣€咃紝鍙墽琛?`brew install pandoc`銆?
+*   **Linux 鐢ㄦ埛**
+    *   浠?Ubuntu/Debian 涓轰緥锛屽湪缁堢鎵ц `sudo apt-get install pandoc` 鍗冲彲銆?
+瀹夎瀹屾垚鍚庯紝鎵撳紑缁堢锛堝懡浠ゆ彁绀虹鎴?PowerShell锛夛紝杈撳叆 `pandoc --version`锛屽鏋滆兘鐪嬪埌鐗堟湰淇℃伅锛屽氨琛ㄧず瀹夎鎴愬姛鍟︺€?
+### 鉁?绗簩姝ワ細鏍稿績璇硶
 
-Pandoc 的核心命令只有一个简单公式：`pandoc [输入文件] -o [输出文件]`�?
-它的智能之处在于，会自动根据文件后缀名判断格式。比如，要把 Markdown 笔记转成 Word 报告，只需�?
+Pandoc 鐨勬牳蹇冨懡浠ゅ彧鏈変竴涓畝鍗曞叕寮忥細`pandoc [杈撳叆鏂囦欢] -o [杈撳嚭鏂囦欢]`銆?
+瀹冪殑鏅鸿兘涔嬪鍦ㄤ簬锛屼細鑷姩鏍规嵁鏂囦欢鍚庣紑鍚嶅垽鏂牸寮忋€傛瘮濡傦紝瑕佹妸 Markdown 绗旇杞垚 Word 鎶ュ憡锛屽彧闇€锛?
 ```bash
 pandoc my_note.md -o my_report.docx
 ```
 
-*   若想精确控制，也可用 `-f`（输入格式）�?`-t`（输出格式）来指定�?*   为生成完整文档，建议加上 `-s` �?`--standalone`�?
-### 🚀 第三步：高频转换场景
+*   鑻ユ兂绮剧‘鎺у埗锛屼篃鍙敤 `-f`锛堣緭鍏ユ牸寮忥級鍜?`-t`锛堣緭鍑烘牸寮忥級鏉ユ寚瀹氥€?*   涓虹敓鎴愬畬鏁存枃妗ｏ紝寤鸿鍔犱笂 `-s` 鎴?`--standalone`銆?
+### 馃殌 绗笁姝ワ細楂橀杞崲鍦烘櫙
 
-**1. Word �?Markdown**
-这是你构建知识库的关键一步，命令同样很简单：
+**1. Word 杞?Markdown**
+杩欐槸浣犳瀯寤虹煡璇嗗簱鐨勫叧閿竴姝ワ紝鍛戒护鍚屾牱寰堢畝鍗曪細
 
 ```bash
-pandoc "你的文档.docx" -f docx -t markdown -o "输出文件.md"
+pandoc "浣犵殑鏂囨。.docx" -f docx -t markdown -o "杈撳嚭鏂囦欢.md"
 ```
 
-*   `-f docx`：指定输入格式是 Word�?*   `-t markdown`：指定输出格式是 Markdown�?*   `-o "输出文件.md"`：指定输出文件名�?
-**2. Markdown �?Word**
-如果你的文章�?Markdown 格式，想转成 Word 格式保存，可以用这个命令�?
+*   `-f docx`锛氭寚瀹氳緭鍏ユ牸寮忔槸 Word銆?*   `-t markdown`锛氭寚瀹氳緭鍑烘牸寮忔槸 Markdown銆?*   `-o "杈撳嚭鏂囦欢.md"`锛氭寚瀹氳緭鍑烘枃浠跺悕銆?
+**2. Markdown 杞?Word**
+濡傛灉浣犵殑鏂囩珷鏄?Markdown 鏍煎紡锛屾兂杞垚 Word 鏍煎紡淇濆瓨锛屽彲浠ョ敤杩欎釜鍛戒护锛?
 ```bash
 pandoc report.md -o final_report.docx
 ```
 
-**3. Markdown �?PDF**
-如果你的 Markdown 笔记包含表格或代码，想要打印或分享，PDF 是很好的选择�?
+**3. Markdown 杞?PDF**
+濡傛灉浣犵殑 Markdown 绗旇鍖呭惈琛ㄦ牸鎴栦唬鐮侊紝鎯宠鎵撳嵃鎴栧垎浜紝PDF 鏄緢濂界殑閫夋嫨銆?
 ```bash
 pandoc paper.md -s -o paper.pdf
 ```
 
-> ⚠️ **注意事项**：PDF 转换需要依�?LaTeX 引擎，如果你的电脑是首次运行此命令，Pandoc 可能会自动下载必要的组件�?>
-> **中文支持**：默认引擎可能不支持中文，需要指�?`xelatex` 引擎和中文字体：
+> 鈿狅笍 **娉ㄦ剰浜嬮」**锛歅DF 杞崲闇€瑕佷緷璧?LaTeX 寮曟搸锛屽鏋滀綘鐨勭數鑴戞槸棣栨杩愯姝ゅ懡浠わ紝Pandoc 鍙兘浼氳嚜鍔ㄤ笅杞藉繀瑕佺殑缁勪欢銆?>
+> **涓枃鏀寔**锛氶粯璁ゅ紩鎿庡彲鑳戒笉鏀寔涓枃锛岄渶瑕佹寚瀹?`xelatex` 寮曟搸鍜屼腑鏂囧瓧浣擄細
 > ```bash
 > pandoc paper.md -o paper.pdf --pdf-engine=xelatex -V mainfont="SimSun"
 > ```
 
-**4. 多文件合�?*
-写长文或电子书时，可以将多个 Markdown 文件合并成一个�?
-*   **合并�?EPUB 电子�?*
+**4. 澶氭枃浠跺悎骞?*
+鍐欓暱鏂囨垨鐢靛瓙涔︽椂锛屽彲浠ュ皢澶氫釜 Markdown 鏂囦欢鍚堝苟鎴愪竴涓€?
+*   **鍚堝苟涓?EPUB 鐢靛瓙涔?*
     ```bash
     pandoc title.md ch1.md ch2.md -o mybook.epub
     ```
 
-*   **合并�?Word 长报�?*
+*   **鍚堝苟涓?Word 闀挎姤鍛?*
     ```bash
     pandoc *.md -o full_report.docx
     ```
 
-**5. 批量转换（Windows�?*
-为了批量处理 `.md` 文件，你可以使用 PowerShell 脚本。这里提供两种常用场景：
+**5. 鎵归噺杞崲锛圵indows锛?*
+涓轰簡鎵归噺澶勭悊 `.md` 鏂囦欢锛屼綘鍙互浣跨敤 PowerShell 鑴氭湰銆傝繖閲屾彁渚涗袱绉嶅父鐢ㄥ満鏅細
 
-*   **场景一：批量将当前目录下所�?`.md` 文件转换�?`.docx`**
+*   **鍦烘櫙涓€锛氭壒閲忓皢褰撳墠鐩綍涓嬫墍鏈?`.md` 鏂囦欢杞崲涓?`.docx`**
     ```powershell
     Get-ChildItem -Path . -Filter *.md | ForEach-Object {
         pandoc $_.FullName -o "$($_.BaseName).docx"
-        Write-Host "已转�? $($_.Name)"
+        Write-Host "宸茶浆鎹? $($_.Name)"
     }
-    Write-Host "批量转换完成�?
+    Write-Host "鎵归噺杞崲瀹屾垚锛?
     ```
 
-*   **场景二：批量将当前目录下所�?`.docx` 文件转换�?`.md`**
+*   **鍦烘櫙浜岋細鎵归噺灏嗗綋鍓嶇洰褰曚笅鎵€鏈?`.docx` 鏂囦欢杞崲涓?`.md`**
     ```powershell
     Get-ChildItem -Path . -Filter *.docx | ForEach-Object {
         pandoc $_.FullName -f docx -t markdown -o "$($_.BaseName).md"
-        Write-Host "已转�? $($_.Name)"
+        Write-Host "宸茶浆鎹? $($_.Name)"
     }
-    Write-Host "批量转换完成�?
+    Write-Host "鎵归噺杞崲瀹屾垚锛?
     ```
-    > 你可以把脚本保存�?`.ps1` 文件（如 `convert.ps1`），放在需要转换的文件夹中，右键选择“使�?PowerShell 运行”即可�?
-### 🔧 第四步：常用选项
+    > 浣犲彲浠ユ妸鑴氭湰淇濆瓨涓?`.ps1` 鏂囦欢锛堝 `convert.ps1`锛夛紝鏀惧湪闇€瑕佽浆鎹㈢殑鏂囦欢澶逛腑锛屽彸閿€夋嫨鈥滀娇鐢?PowerShell 杩愯鈥濆嵆鍙€?
+### 馃敡 绗洓姝ワ細甯哥敤閫夐」
 
-| 选项 | 功能 | 示例 |
+| 閫夐」 | 鍔熻兘 | 绀轰緥 |
 | :--- | :--- | :--- |
-| `-f` / `--from` | 指定输入格式 | `-f markdown` |
-| `-t` / `--to` | 指定输出格式 | `-t html` |
-| `-o` / `--output` | 指定输出文件�?| `-o output.docx` |
-| `-s` / `--standalone` | 生成完整文档 | `pandoc -s file.md -o out.html` |
-| `--toc` | 生成目录 | `pandoc --toc file.md -o out.pdf` |
-| `--template` | 使用自定义模�?| `pandoc --template=mytemplate.tex file.md -o out.pdf` |
-| `--pdf-engine` | 指定 PDF 引擎 | `--pdf-engine=xelatex` |
-| `-V` / `--variable` | 设置变量 | `-V mainfont="SimSun"` |
+| `-f` / `--from` | 鎸囧畾杈撳叆鏍煎紡 | `-f markdown` |
+| `-t` / `--to` | 鎸囧畾杈撳嚭鏍煎紡 | `-t html` |
+| `-o` / `--output` | 鎸囧畾杈撳嚭鏂囦欢鍚?| `-o output.docx` |
+| `-s` / `--standalone` | 鐢熸垚瀹屾暣鏂囨。 | `pandoc -s file.md -o out.html` |
+| `--toc` | 鐢熸垚鐩綍 | `pandoc --toc file.md -o out.pdf` |
+| `--template` | 浣跨敤鑷畾涔夋ā鏉?| `pandoc --template=mytemplate.tex file.md -o out.pdf` |
+| `--pdf-engine` | 鎸囧畾 PDF 寮曟搸 | `--pdf-engine=xelatex` |
+| `-V` / `--variable` | 璁剧疆鍙橀噺 | `-V mainfont="SimSun"` |
 
-### 🔥 第五步：高级玩法
+### 馃敟 绗簲姝ワ細楂樼骇鐜╂硶
 
-**1. 自定�?Word 模板**
-想拥有完全符合心意的 Word 样式？可以这样做�?
-1.  **获取默认模板**：在终端输入 `pandoc -o custom-reference.docx --print-default-data-file reference.docx`，就会生成一�?`custom-reference.docx` 文件�?2.  **修改样式**：用 Word 打开，尽情修改其中的字体、段落、页边距等一切样式�?3.  **应用模板**：转换时，通过 `--reference-doc` 参数指定你改好的模板文件即可，如 `pandoc input.md -o output.docx --reference-doc=custom-reference.docx`�?
-**2. 管理元数�?*
-�?Markdown 文件最顶部添加�?`---` 包裹�?YAML 格式信息，可以方便地定义文档的标题、作者、日期等�?
+**1. 鑷畾涔?Word 妯℃澘**
+鎯虫嫢鏈夊畬鍏ㄧ鍚堝績鎰忕殑 Word 鏍峰紡锛熷彲浠ヨ繖鏍峰仛锛?
+1.  **鑾峰彇榛樿妯℃澘**锛氬湪缁堢杈撳叆 `pandoc -o custom-reference.docx --print-default-data-file reference.docx`锛屽氨浼氱敓鎴愪竴涓?`custom-reference.docx` 鏂囦欢銆?2.  **淇敼鏍峰紡**锛氱敤 Word 鎵撳紑锛屽敖鎯呬慨鏀瑰叾涓殑瀛椾綋銆佹钀姐€侀〉杈硅窛绛変竴鍒囨牱寮忋€?3.  **搴旂敤妯℃澘**锛氳浆鎹㈡椂锛岄€氳繃 `--reference-doc` 鍙傛暟鎸囧畾浣犳敼濂界殑妯℃澘鏂囦欢鍗冲彲锛屽 `pandoc input.md -o output.docx --reference-doc=custom-reference.docx`銆?
+**2. 绠＄悊鍏冩暟鎹?*
+鍦?Markdown 鏂囦欢鏈€椤堕儴娣诲姞浠?`---` 鍖呰９鐨?YAML 鏍煎紡淇℃伅锛屽彲浠ユ柟渚垮湴瀹氫箟鏂囨。鐨勬爣棰樸€佷綔鑰呫€佹棩鏈熺瓑銆?
 ```yaml
 ---
-title: 这是标题
-author: 张三
+title: 杩欐槸鏍囬
+author: 寮犱笁
 date: 2023-10-20
 ---
 ```
 
-### �?第六步：常见问题与解决方�?
-*   **中文 PDF 乱码或空�?*
-    默认引擎 `pdflatex` 不支持中文。需要指定引擎和中文字体�?    ```bash
+### 鉂?绗叚姝ワ細甯歌闂涓庤В鍐虫柟妗?
+*   **涓枃 PDF 涔辩爜鎴栫┖鐧?*
+    榛樿寮曟搸 `pdflatex` 涓嶆敮鎸佷腑鏂囥€傞渶瑕佹寚瀹氬紩鎿庡拰涓枃瀛椾綋锛?    ```bash
     pandoc input.md -o output.pdf --pdf-engine=xelatex -V mainfont="SimSun"
     ```
-*   **Word �?Markdown 后格式混�?*
-    可以尝试输出更纯净�?Markdown 格式�?    ```bash
+*   **Word 杞?Markdown 鍚庢牸寮忔贩涔?*
+    鍙互灏濊瘯杈撳嚭鏇寸函鍑€鐨?Markdown 鏍煎紡锛?    ```bash
     pandoc input.docx -f docx -t markdown-strict -o output.md
     ```
-*   **转换出的文件无法打开**
-    如果转换的是 RTF 等格式，记得加上 `-s` 参数，以确保生成完整的文档结构，而非内容片段�?
-### 💎 总结
+*   **杞崲鍑虹殑鏂囦欢鏃犳硶鎵撳紑**
+    濡傛灉杞崲鐨勬槸 RTF 绛夋牸寮忥紝璁板緱鍔犱笂 `-s` 鍙傛暟锛屼互纭繚鐢熸垚瀹屾暣鐨勬枃妗ｇ粨鏋勶紝鑰岄潪鍐呭鐗囨銆?
+### 馃拵 鎬荤粨
 
-掌握 Pandoc，就如同为自己配备了一位文档格式的万能转换大师。无论是构建个人知识库，还是处理日常的学术和工作文档，它都能让你事半功倍�?
-希望这份指南对你有所帮助�
+鎺屾彙 Pandoc锛屽氨濡傚悓涓鸿嚜宸遍厤澶囦簡涓€浣嶆枃妗ｆ牸寮忕殑涓囪兘杞崲澶у笀銆傛棤璁烘槸鏋勫缓涓汉鐭ヨ瘑搴擄紝杩樻槸澶勭悊鏃ュ父鐨勫鏈拰宸ヤ綔鏂囨。锛屽畠閮借兘璁╀綘浜嬪崐鍔熷€嶃€?
+甯屾湜杩欎唤鎸囧崡瀵逛綘鏈夋墍甯姪銆

@@ -2,150 +2,150 @@
 ---
 
 git add .
-git commit -m "修改说明"
+git commit -m "淇敼璇存槑"
 git push
-将现在文件夹里所有的文件更改同步到GitHub远程仓库
-克隆到当前目录下的默认文件夹（仓库名）：
+灏嗙幇鍦ㄦ枃浠跺す閲屾墍鏈夌殑鏂囦欢鏇存敼鍚屾鍒癎itHub杩滅▼浠撳簱
+鍏嬮殕鍒板綋鍓嶇洰褰曚笅鐨勯粯璁ゆ枃浠跺す锛堜粨搴撳悕锛夛細
     
     bash
     
-    git clone https://github.com/用户�?仓库�?git
+    git clone https://github.com/鐢ㄦ埛鍚?浠撳簱鍚?git
     
-以下�?Git 常用命令的分类整理，涵盖从初始化到远程协作的常见操作。由�?Git 命令众多，这里主要列出实际开发中高频使用的命令，并附简要说明�?
-## 一、初始配�?
+浠ヤ笅鏄?Git 甯哥敤鍛戒护鐨勫垎绫绘暣鐞嗭紝娑电洊浠庡垵濮嬪寲鍒拌繙绋嬪崗浣滅殑甯歌鎿嶄綔銆傜敱浜?Git 鍛戒护浼楀锛岃繖閲屼富瑕佸垪鍑哄疄闄呭紑鍙戜腑楂橀浣跨敤鐨勫懡浠わ紝骞堕檮绠€瑕佽鏄庛€?
+## 涓€銆佸垵濮嬮厤缃?
 ```bash
-git config --global user.name "Your Name"    # 设置全局用户�?git config --global user.email "email@example.com"  # 设置全局邮箱
-git config --global core.editor "code --wait"       # 设置默认编辑�?git config --list               # 查看所有配�?git config --global alias.co checkout  # 设置命令别名
+git config --global user.name "Your Name"    # 璁剧疆鍏ㄥ眬鐢ㄦ埛鍚?git config --global user.email "email@example.com"  # 璁剧疆鍏ㄥ眬閭
+git config --global core.editor "code --wait"       # 璁剧疆榛樿缂栬緫鍣?git config --list               # 鏌ョ湅鎵€鏈夐厤缃?git config --global alias.co checkout  # 璁剧疆鍛戒护鍒悕
 ```
 
-## 二、仓库创建与克隆
+## 浜屻€佷粨搴撳垱寤轰笌鍏嬮殕
 
 ```bash
-git init                        # 初始化当前目录为仓库
-git clone <url>                 # 克隆远程仓库
-git clone --depth 1 <url>       # 浅克隆（只拉取最新一次提交）
+git init                        # 鍒濆鍖栧綋鍓嶇洰褰曚负浠撳簱
+git clone <url>                 # 鍏嬮殕杩滅▼浠撳簱
+git clone --depth 1 <url>       # 娴呭厠闅嗭紙鍙媺鍙栨渶鏂颁竴娆℃彁浜わ級
 ```
 
-## 三、基本快照操�?
+## 涓夈€佸熀鏈揩鐓ф搷浣?
 ```bash
-git status                      # 查看工作区与暂存区状�?git add <file>                  # 添加指定文件到暂存区
-git add .                       # 添加所有变更文�?git add -p                      # 交互式添加（逐块确认�?git rm <file>                   # 删除文件并从暂存区移�?git mv <old> <new>              # 移动/重命名文�?git commit -m "message"         # 提交暂存区内�?git commit -am "message"        # 跳过 add 直接提交已跟踪文�?git commit --amend              # 修改上一次提交（重写历史�?```
+git status                      # 鏌ョ湅宸ヤ綔鍖轰笌鏆傚瓨鍖虹姸鎬?git add <file>                  # 娣诲姞鎸囧畾鏂囦欢鍒版殏瀛樺尯
+git add .                       # 娣诲姞鎵€鏈夊彉鏇存枃浠?git add -p                      # 浜や簰寮忔坊鍔狅紙閫愬潡纭锛?git rm <file>                   # 鍒犻櫎鏂囦欢骞朵粠鏆傚瓨鍖虹Щ闄?git mv <old> <new>              # 绉诲姩/閲嶅懡鍚嶆枃浠?git commit -m "message"         # 鎻愪氦鏆傚瓨鍖哄唴瀹?git commit -am "message"        # 璺宠繃 add 鐩存帴鎻愪氦宸茶窡韪枃浠?git commit --amend              # 淇敼涓婁竴娆℃彁浜わ紙閲嶅啓鍘嗗彶锛?```
 
-## 四、差异与查看历史
+## 鍥涖€佸樊寮備笌鏌ョ湅鍘嗗彶
 
 ```bash
-git diff                        # 工作�?vs 暂存�?git diff --staged               # 暂存�?vs 最新提�?git diff HEAD                   # 工作�?vs 最新提�?git diff <commit1> <commit2>    # 比较两个提交
-git log                         # 显示提交历史
-git log --oneline --graph --all # 简洁图形式历史
-git log -p                      # 显示具体改动内容
-git reflog                      # 记录所�?HEAD 变动（恢复误删提交）
-git show <commit>               # 显示某次提交的详细信�?```
+git diff                        # 宸ヤ綔鍖?vs 鏆傚瓨鍖?git diff --staged               # 鏆傚瓨鍖?vs 鏈€鏂版彁浜?git diff HEAD                   # 宸ヤ綔鍖?vs 鏈€鏂版彁浜?git diff <commit1> <commit2>    # 姣旇緝涓や釜鎻愪氦
+git log                         # 鏄剧ず鎻愪氦鍘嗗彶
+git log --oneline --graph --all # 绠€娲佸浘褰㈠紡鍘嗗彶
+git log -p                      # 鏄剧ず鍏蜂綋鏀瑰姩鍐呭
+git reflog                      # 璁板綍鎵€鏈?HEAD 鍙樺姩锛堟仮澶嶈鍒犳彁浜わ級
+git show <commit>               # 鏄剧ず鏌愭鎻愪氦鐨勮缁嗕俊鎭?```
 
-## 五、撤销与重�?
+## 浜斻€佹挙閿€涓庨噸缃?
 ```bash
-git restore <file>              # 撤销工作区修改（�?add�?git restore --staged <file>     # 将文件移出暂存区（但保留修改�?git reset <file>                # 同上，旧写法
-git reset --soft HEAD~1         # 撤销提交，改动回到暂存区
-git reset --mixed HEAD~1        # 撤销提交，改动回到工作区（默认）
-git reset --hard HEAD~1         # 完全删除上一次提交（危险�?git revert <commit>             # 生成一个新提交来抵消指定提交的改动
+git restore <file>              # 鎾ら攢宸ヤ綔鍖轰慨鏀癸紙鏈?add锛?git restore --staged <file>     # 灏嗘枃浠剁Щ鍑烘殏瀛樺尯锛堜絾淇濈暀淇敼锛?git reset <file>                # 鍚屼笂锛屾棫鍐欐硶
+git reset --soft HEAD~1         # 鎾ら攢鎻愪氦锛屾敼鍔ㄥ洖鍒版殏瀛樺尯
+git reset --mixed HEAD~1        # 鎾ら攢鎻愪氦锛屾敼鍔ㄥ洖鍒板伐浣滃尯锛堥粯璁わ級
+git reset --hard HEAD~1         # 瀹屽叏鍒犻櫎涓婁竴娆℃彁浜わ紙鍗遍櫓锛?git revert <commit>             # 鐢熸垚涓€涓柊鎻愪氦鏉ユ姷娑堟寚瀹氭彁浜ょ殑鏀瑰姩
 ```
 
-## 六、分支管�?
+## 鍏€佸垎鏀鐞?
 ```bash
-git branch                      # 列出本地分支（当前带*�?git branch -r                   # 列出远程分支
-git branch -a                   # 列出所有分�?git branch <branch-name>        # 创建新分�?git branch -d <branch>          # 删除分支（已合并�?git branch -D <branch>          # 强制删除分支
-git branch -m <old> <new>       # 重命名分�?git switch <branch>             # 切换分支（推荐）
-git checkout <branch>           # 切换分支（旧命令�?git switch -c <new-branch>      # 创建并切换分�?git checkout -b <new-branch>    # 同上（旧命令�?git merge <branch>              # 将指定分支合并到当前分支
-git merge --abort               # 中止合并（解决冲突前�?git rebase <base-branch>        # 变基操作（整理提交历史）
-git rebase --continue           # 继续变基
-git rebase --abort              # 放弃变基
+git branch                      # 鍒楀嚭鏈湴鍒嗘敮锛堝綋鍓嶅甫*锛?git branch -r                   # 鍒楀嚭杩滅▼鍒嗘敮
+git branch -a                   # 鍒楀嚭鎵€鏈夊垎鏀?git branch <branch-name>        # 鍒涘缓鏂板垎鏀?git branch -d <branch>          # 鍒犻櫎鍒嗘敮锛堝凡鍚堝苟锛?git branch -D <branch>          # 寮哄埗鍒犻櫎鍒嗘敮
+git branch -m <old> <new>       # 閲嶅懡鍚嶅垎鏀?git switch <branch>             # 鍒囨崲鍒嗘敮锛堟帹鑽愶級
+git checkout <branch>           # 鍒囨崲鍒嗘敮锛堟棫鍛戒护锛?git switch -c <new-branch>      # 鍒涘缓骞跺垏鎹㈠垎鏀?git checkout -b <new-branch>    # 鍚屼笂锛堟棫鍛戒护锛?git merge <branch>              # 灏嗘寚瀹氬垎鏀悎骞跺埌褰撳墠鍒嗘敮
+git merge --abort               # 涓鍚堝苟锛堣В鍐冲啿绐佸墠锛?git rebase <base-branch>        # 鍙樺熀鎿嶄綔锛堟暣鐞嗘彁浜ゅ巻鍙诧級
+git rebase --continue           # 缁х画鍙樺熀
+git rebase --abort              # 鏀惧純鍙樺熀
 ```
 
-## 七、远程仓库协�?
+## 涓冦€佽繙绋嬩粨搴撳崗浣?
 ```bash
-git remote -v                   # 查看远程仓库别名及地址
-git remote add origin <url>     # 添加远程仓库（命�?origin�?git remote remove <name>        # 删除远程仓库
-git remote rename <old> <new>   # 重命名远程别�?git fetch                       # 拉取远程更新（不合并�?git fetch --prune               # 拉取并删除本地已不存在的远程分支引用
-git pull                        # fetch + merge （拉取并合并�?git pull --rebase               # fetch + rebase
-git push                        # 推送当前分支到远程同名分支
-git push -u origin <branch>     # 推送并建立上游跟踪
-git push --force                # 强制推送（覆盖远程，谨慎）
-git push --force-with-lease     # 更安全的强制推�?git push origin --delete <branch>   # 删除远程分支
-git push --tags                 # 推送标签到远程
+git remote -v                   # 鏌ョ湅杩滅▼浠撳簱鍒悕鍙婂湴鍧€
+git remote add origin <url>     # 娣诲姞杩滅▼浠撳簱锛堝懡鍚?origin锛?git remote remove <name>        # 鍒犻櫎杩滅▼浠撳簱
+git remote rename <old> <new>   # 閲嶅懡鍚嶈繙绋嬪埆鍚?git fetch                       # 鎷夊彇杩滅▼鏇存柊锛堜笉鍚堝苟锛?git fetch --prune               # 鎷夊彇骞跺垹闄ゆ湰鍦板凡涓嶅瓨鍦ㄧ殑杩滅▼鍒嗘敮寮曠敤
+git pull                        # fetch + merge 锛堟媺鍙栧苟鍚堝苟锛?git pull --rebase               # fetch + rebase
+git push                        # 鎺ㄩ€佸綋鍓嶅垎鏀埌杩滅▼鍚屽悕鍒嗘敮
+git push -u origin <branch>     # 鎺ㄩ€佸苟寤虹珛涓婃父璺熻釜
+git push --force                # 寮哄埗鎺ㄩ€侊紙瑕嗙洊杩滅▼锛岃皑鎱庯級
+git push --force-with-lease     # 鏇村畨鍏ㄧ殑寮哄埗鎺ㄩ€?git push origin --delete <branch>   # 鍒犻櫎杩滅▼鍒嗘敮
+git push --tags                 # 鎺ㄩ€佹爣绛惧埌杩滅▼
 ```
 
-## 八、标签管�?
+## 鍏€佹爣绛剧鐞?
 ```bash
-git tag                         # 列出所有标�?git tag <tagname>               # 创建轻量标签
-git tag -a <tagname> -m "msg"   # 创建附注标签
-git show <tagname>              # 查看标签信息
-git tag -d <tagname>            # 删除本地标签
-git push origin <tagname>       # 推送单个标�?git push origin --tags          # 推送所有标�?git push origin --delete <tagname>  # 删除远程标签
+git tag                         # 鍒楀嚭鎵€鏈夋爣绛?git tag <tagname>               # 鍒涘缓杞婚噺鏍囩
+git tag -a <tagname> -m "msg"   # 鍒涘缓闄勬敞鏍囩
+git show <tagname>              # 鏌ョ湅鏍囩淇℃伅
+git tag -d <tagname>            # 鍒犻櫎鏈湴鏍囩
+git push origin <tagname>       # 鎺ㄩ€佸崟涓爣绛?git push origin --tags          # 鎺ㄩ€佹墍鏈夋爣绛?git push origin --delete <tagname>  # 鍒犻櫎杩滅▼鏍囩
 ```
 
-## 九、暂存与清理
+## 涔濄€佹殏瀛樹笌娓呯悊
 
 ```bash
-git stash                       # 暂存当前未提交的修改
-git stash save "message"        # 带说明的暂存
-git stash list                  # 查看暂存列表
-git stash apply                 # 应用最新暂存但不删�?git stash pop                   # 应用并删除最新暂�?git stash drop                  # 删除指定暂存
-git stash clear                 # 清空所有暂�?git clean -n                    # 预览会被删除的未跟踪文件
-git clean -f                    # 强制删除未跟踪文�?git clean -fd                   # 同时删除未跟踪目�?```
+git stash                       # 鏆傚瓨褰撳墠鏈彁浜ょ殑淇敼
+git stash save "message"        # 甯﹁鏄庣殑鏆傚瓨
+git stash list                  # 鏌ョ湅鏆傚瓨鍒楄〃
+git stash apply                 # 搴旂敤鏈€鏂版殏瀛樹絾涓嶅垹闄?git stash pop                   # 搴旂敤骞跺垹闄ゆ渶鏂版殏瀛?git stash drop                  # 鍒犻櫎鎸囧畾鏆傚瓨
+git stash clear                 # 娓呯┖鎵€鏈夋殏瀛?git clean -n                    # 棰勮浼氳鍒犻櫎鐨勬湭璺熻釜鏂囦欢
+git clean -f                    # 寮哄埗鍒犻櫎鏈窡韪枃浠?git clean -fd                   # 鍚屾椂鍒犻櫎鏈窡韪洰褰?```
 
-## 十、调试与高级
-
-```bash
-git bisect start                # 开始二分查找定�?bug 引入的提�?git bisect bad                  # 标记当前提交为坏
-git bisect good <commit>        # 标记已知好提�?git bisect reset                # 结束二分查找
-git grep "pattern"              # 在代码库中搜索字符串
-git blame <file>                # 查看文件每一行的最后修改信�?git cherry-pick <commit>        # 拣选某个提交到当前分支
-git worktree add <path> <branch>   # 创建新工作树并行开�?```
-
-## 十一、子模块
+## 鍗併€佽皟璇曚笌楂樼骇
 
 ```bash
-git submodule add <url>         # 添加子模�?git submodule update --init     # 初始化并拉取子模�?git submodule update --remote   # 更新子模块到最新提�?git clone --recursive <url>     # 克隆仓库并同时初始化子模�?```
+git bisect start                # 寮€濮嬩簩鍒嗘煡鎵惧畾浣?bug 寮曞叆鐨勬彁浜?git bisect bad                  # 鏍囪褰撳墠鎻愪氦涓哄潖
+git bisect good <commit>        # 鏍囪宸茬煡濂芥彁浜?git bisect reset                # 缁撴潫浜屽垎鏌ユ壘
+git grep "pattern"              # 鍦ㄤ唬鐮佸簱涓悳绱㈠瓧绗︿覆
+git blame <file>                # 鏌ョ湅鏂囦欢姣忎竴琛岀殑鏈€鍚庝慨鏀逛俊鎭?git cherry-pick <commit>        # 鎷ｉ€夋煇涓彁浜ゅ埌褰撳墠鍒嗘敮
+git worktree add <path> <branch>   # 鍒涘缓鏂板伐浣滄爲骞惰寮€鍙?```
 
-## 十二、常见问题修�?
+## 鍗佷竴銆佸瓙妯″潡
+
 ```bash
-# 撤销上一�?push（谨慎使用，需强制推送）
+git submodule add <url>         # 娣诲姞瀛愭ā鍧?git submodule update --init     # 鍒濆鍖栧苟鎷夊彇瀛愭ā鍧?git submodule update --remote   # 鏇存柊瀛愭ā鍧楀埌鏈€鏂版彁浜?git clone --recursive <url>     # 鍏嬮殕浠撳簱骞跺悓鏃跺垵濮嬪寲瀛愭ā鍧?```
+
+## 鍗佷簩銆佸父瑙侀棶棰樹慨澶?
+```bash
+# 鎾ら攢涓婁竴娆?push锛堣皑鎱庝娇鐢紝闇€寮哄埗鎺ㄩ€侊級
 git reset --soft HEAD~1
 git push --force-with-lease
 
-# 丢弃本地所有未提交修改（重置到最新提交）
+# 涓㈠純鏈湴鎵€鏈夋湭鎻愪氦淇敼锛堥噸缃埌鏈€鏂版彁浜わ級
 git reset --hard HEAD
 
-# 修改最新提交的 message
+# 淇敼鏈€鏂版彁浜ょ殑 message
 git commit --amend -m "new message"
 
-# 将部分文件改动移动到新分�?git stash
+# 灏嗛儴鍒嗘枃浠舵敼鍔ㄧЩ鍔ㄥ埌鏂板垎鏀?git stash
 git checkout -b new-branch
 git stash pop
 ```
 
-> **提示**：使�?`git <command> --help` 可查看该命令的完整文档（�?`git commit --help`）。以上命令覆盖了日常开�?95% 以上的场景，更多底层命令（如 `git cat-file`、`git fsck` 等）请参考官方文档�?
+> **鎻愮ず**锛氫娇鐢?`git <command> --help` 鍙煡鐪嬭鍛戒护鐨勫畬鏁存枃妗ｏ紙濡?`git commit --help`锛夈€備互涓婂懡浠よ鐩栦簡鏃ュ父寮€鍙?95% 浠ヤ笂鐨勫満鏅紝鏇村搴曞眰鍛戒护锛堝 `git cat-file`銆乣git fsck` 绛夛級璇峰弬鑰冨畼鏂规枃妗ｃ€?
 
-## 🎯 核心规则（以后就按这个）
+## 馃幆 鏍稿績瑙勫垯锛堜互鍚庡氨鎸夎繖涓級
 
-|你在哪台电脑上|你的默认分支|要执行的合并操作|
+|浣犲湪鍝彴鐢佃剳涓妡浣犵殑榛樿鍒嗘敮|瑕佹墽琛岀殑鍚堝苟鎿嶄綔|
 |---|---|---|
-|**Windows 系统**|`main`|`git merge origin/ubuntu`（把 Ubuntu 电脑的更新拉过来）|
-|**Ubuntu 系统**|`ubuntu`|`git merge origin/main`（把 Windows 电脑的更新拉过来）|
+|**Windows 绯荤粺**|`main`|`git merge origin/ubuntu`锛堟妸 Ubuntu 鐢佃剳鐨勬洿鏂版媺杩囨潵锛墊
+|**Ubuntu 绯荤粺**|`ubuntu`|`git merge origin/main`锛堟妸 Windows 鐢佃剳鐨勬洿鏂版媺杩囨潵锛墊
 
 ---
 
-## 📝 完整操作流程（以你今天的场景为例�?
-假设你今天在 **Windows** 上，想拿到之前在 **Ubuntu** 上写的笔记：
+## 馃摑 瀹屾暣鎿嶄綔娴佺▼锛堜互浣犱粖澶╃殑鍦烘櫙涓轰緥锛?
+鍋囪浣犱粖澶╁湪聽**Windows**聽涓婏紝鎯虫嬁鍒颁箣鍓嶅湪聽**Ubuntu**聽涓婂啓鐨勭瑪璁帮細
 
 powershell
 
-# 1. 先拉取远程所有最新信息（必须�?git fetch origin
-# 2. 切换�?Windows 对应的分支（main�?git checkout main
-# 3. �?Ubuntu 的更新合并进�?git merge origin/ubuntu
-# 4. 推送到远程，让 Ubuntu 那边也能看到
+# 1. 鍏堟媺鍙栬繙绋嬫墍鏈夋渶鏂颁俊鎭紙蹇呴』锛?git fetch origin
+# 2. 鍒囨崲鍒?Windows 瀵瑰簲鐨勫垎鏀紙main锛?git checkout main
+# 3. 鎶?Ubuntu 鐨勬洿鏂板悎骞惰繘鏉?git merge origin/ubuntu
+# 4. 鎺ㄩ€佸埌杩滅▼锛岃 Ubuntu 閭ｈ竟涔熻兘鐪嬪埌
 git push origin main
 
-> 反过来，如果你在 **Ubuntu** 上，想拿 Windows 的更新，就是把上面的 `main` 和 `ubuntu` 互换�?> 
+> 鍙嶈繃鏉ワ紝濡傛灉浣犲湪聽**Ubuntu**聽涓婏紝鎯虫嬁 Windows 鐨勬洿鏂帮紝灏辨槸鎶婁笂闈㈢殑聽`main`聽鍜屄燻ubuntu`聽浜掓崲锛?> 
 > bash
 > 
 > git checkout ubuntu
@@ -154,19 +154,19 @@ git push origin main
 
 ---
 
-## ⚠️ 重要提醒：未来的冲突怎么处理
+## 鈿狅笍 閲嶈鎻愰啋锛氭湭鏉ョ殑鍐茬獊鎬庝箞澶勭悊
 
-因为两个分支**完全对等**，以后你�?Windows 上写了一些新内容，同�?Ubuntu 上也写了一些新内容�?*互相合并时一定会产生冲突**（因为都有新的提交）�?
-### 怎么避免冲突爆炸�?
-**黄金习惯：每次开始写笔记前，先拉取对方的最新内容�?*
+鍥犱负涓や釜鍒嗘敮**瀹屽叏瀵圭瓑**锛屼互鍚庝綘鍦?Windows 涓婂啓浜嗕竴浜涙柊鍐呭锛屽悓鏃?Ubuntu 涓婁篃鍐欎簡涓€浜涙柊鍐呭锛?*浜掔浉鍚堝苟鏃朵竴瀹氫細浜х敓鍐茬獊**锛堝洜涓洪兘鏈夋柊鐨勬彁浜わ級銆?
+### 鎬庝箞閬垮厤鍐茬獊鐖嗙偢锛?
+**榛勯噾涔犳儻锛氭瘡娆″紑濮嬪啓绗旇鍓嶏紝鍏堟媺鍙栧鏂圭殑鏈€鏂板唴瀹广€?*
 
-举个例子�?
-- 今天你在 Windows 写完笔记，推送到 `main`�?    
-- 晚上你切换到 Ubuntu 系统�?*打开 Obsidian 写笔记之�?*，先执行�?    
+涓句釜渚嬪瓙锛?
+- 浠婂ぉ浣犲湪 Windows 鍐欏畬绗旇锛屾帹閫佸埌聽`main`銆?    
+- 鏅氫笂浣犲垏鎹㈠埌 Ubuntu 绯荤粺锛?*鎵撳紑 Obsidian 鍐欑瑪璁颁箣鍓?*锛屽厛鎵ц锛?    
     bash
     
-    git pull origin main   # �?Windows 的最新笔记拉�?Ubuntu 本地
+    git pull origin main   # 鎶?Windows 鐨勬渶鏂扮瑪璁版媺鍒?Ubuntu 鏈湴
     
-    这样就合并好了，然后再写新笔记，就不会冲突�?    
+    杩欐牱灏卞悎骞跺ソ浜嗭紝鐒跺悗鍐嶅啓鏂扮瑪璁帮紝灏变笉浼氬啿绐併€?    
 
-如果已经产生了冲突（Git 提示 `CONFLICT`），解决方法和今天看到的自动处理不太一样，你需要手动处理。不�?Obsidian �?Markdown 文件大多是追加内容，冲突一般不会太复杂�
+濡傛灉宸茬粡浜х敓浜嗗啿绐侊紙Git 鎻愮ず聽`CONFLICT`锛夛紝瑙ｅ喅鏂规硶鍜屼粖澶╃湅鍒扮殑鑷姩澶勭悊涓嶅お涓€鏍凤紝浣犻渶瑕佹墜鍔ㄥ鐞嗐€備笉杩?Obsidian 鐨?Markdown 鏂囦欢澶у鏄拷鍔犲唴瀹癸紝鍐茬獊涓€鑸笉浼氬お澶嶆潅銆
